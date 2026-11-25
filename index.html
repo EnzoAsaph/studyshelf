@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyShelf - Free Books and Quiz Practice</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>StudyShelf</h1>
+    <p class="tagline">Find free books to study from, then test yourself with quick quizzes.</p>
+    <nav class="tabs">
+      <button class="tab active" data-tab="books">Free Books</button>
+      <button class="tab" data-tab="saved">My Reading List (<span id="saved-count">0</span>)</button>
+      <button class="tab" data-tab="quiz">Quiz Practice</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ========== BOOK FINDER ========== -->
+    <section id="books" class="panel active">
+      <form id="book-form" class="search-box">
+        <select id="search-by" aria-label="Search by">
+          <option value="q">Anything</option>
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="subject">Subject</option>
+        </select>
+        <input id="book-query" type="text" placeholder="e.g. calculus, biology, Shakespeare" maxlength="100" aria-label="Search term">
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="chips">
+        <span>Try:</span>
+        <button class="chip" data-term="calculus">Calculus</button>
+        <button class="chip" data-term="biology">Biology</button>
+        <button class="chip" data-term="programming">Programming</button>
+        <button class="chip" data-term="economics">Economics</button>
+        <button class="chip" data-term="physics">Physics</button>
+        <button class="chip" data-term="african history">African History</button>
+      </div>
+
+      <div class="filters">
+        <label><input type="checkbox" id="free-only" checked> Free to read online only</label>
+        <label>Sort by
+          <select id="book-sort">
+            <option value="">Most relevant</option>
+            <option value="new">Newest first</option>
+            <option value="old">Oldest first</option>
+            <option value="title">Title A-Z</option>
+            <option value="editions">Most editions</option>
+          </select>
+        </label>
+        <label>Language
+          <select id="book-lang">
+            <option value="">All languages</option>
+          </select>
+        </label>
+        <label>Filter results
+          <input id="book-filter" type="text" placeholder="type to narrow down" maxlength="50">
+        </label>
+      </div>
+
+      <p id="book-status" class="status">Search for a topic to find books.</p>
+      <div id="book-results" class="grid"></div>
+      <button id="load-more" class="secondary hidden">Load more books</button>
+    </section>
+
+    <!-- ========== READING LIST ========== -->
+    <section id="saved" class="panel">
+      <p id="saved-status" class="status"></p>
+      <div id="saved-results" class="grid"></div>
+    </section>
+
+    <!-- ========== QUIZ ========== -->
+    <section id="quiz" class="panel">
+      <!-- Step 1: settings -->
+      <div id="quiz-setup" class="card setup">
+        <h2>Set up your practice quiz</h2>
+        <label>Subject
+          <select id="quiz-category">
+            <option value="">Loading subjects...</option>
+          </select>
+        </label>
+        <p id="category-info" class="hint"></p>
+        <label>Difficulty
+          <select id="quiz-difficulty">
+            <option value="">Any</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </label>
+        <label>Number of questions
+          <select id="quiz-amount">
+            <option>5</option>
+            <option selected>10</option>
+            <option>15</option>
+            <option>20</option>
+          </select>
+        </label>
+        <label>Question type
+          <select id="quiz-type">
+            <option value="">Any</option>
+            <option value="multiple">Multiple choice</option>
+            <option value="boolean">True / False</option>
+          </select>
+        </label>
+        <button id="start-quiz">Start Quiz</button>
+        <p id="quiz-status" class="status"></p>
+      </div>
+
+      <!-- Step 2: questions -->
+      <div id="quiz-play" class="card hidden">
+        <div class="progress"><div id="progress-bar"></div></div>
+        <p id="question-meta" class="hint"></p>
+        <h2 id="question-text"></h2>
+        <div id="answers" class="answers"></div>
+        <p id="feedback"></p>
+        <button id="next-question" class="hidden">Next</button>
+      </div>
+
+      <!-- Step 3: results -->
+      <div id="quiz-result" class="card hidden">
+        <h2 id="score-text"></h2>
+        <p id="score-message"></p>
+        <div class="row">
+          <button id="play-again">New Quiz</button>
+          <button id="find-books" class="secondary">Find free books on this subject</button>
+        </div>
+        <h3>Review your answers</h3>
+        <label><input type="checkbox" id="only-wrong"> Show only the ones I got wrong</label>
+        <ol id="review-list"></ol>
+      </div>
+
+      <!-- Score history -->
+      <div class="card">
+        <h3>Your quiz history</h3>
+        <p id="history-summary" class="hint"></p>
+        <table>
+          <thead>
+            <tr>
+              <th data-sort="date">Date</th>
+              <th data-sort="category">Subject</th>
+              <th data-sort="difficulty">Difficulty</th>
+              <th data-sort="percent">Score</th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+        <button id="clear-history" class="secondary small">Clear history</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Book data from <a href="https://openlibrary.org/developers/api" target="_blank" rel="noopener">Open Library</a>.
+    Quiz questions from <a href="https://opentdb.com/" target="_blank" rel="noopener">Open Trivia Database</a> (CC BY-SA 4.0).
+  </footer>
+
+  <script src="js/helpers.js"></script>
+  <script src="js/books.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

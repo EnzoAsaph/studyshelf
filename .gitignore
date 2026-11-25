@@ -1,0 +1,16 @@
+# Secrets and local settings (never commit these)
+.env
+*.env
+config.local.js
+*.pem
+*.key
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+tmp/
