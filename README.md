@@ -19,6 +19,7 @@ lets you check what you learned with practice quizzes on the same subject.
 - **Free to read online only** filter (on by default) so you only see books you can actually open
 - **Sort** by relevance, newest, oldest, title A-Z or most editions
 - **Filter** the loaded results by language or by a word in the title/author
+- Works on phones and computers (responsive layout)
 - Each book shows its cover, author, year, editions, subjects and a clear badge:
   *Free to read*, *Free to borrow* or *Info only*
 - **Read now** opens the full book on the Internet Archive
@@ -33,6 +34,7 @@ lets you check what you learned with practice quizzes on the same subject.
 - Results page with your score, a message, and a **review of every answer**
   (with a filter to show only the ones you got wrong)
 - **"Find free books on this subject"** button sends you straight to the book finder
+- **Score chart**: a colour-coded bar chart of your last 10 quizzes (green 80%+, yellow 50%+, red below) so you can see your progress
 - **Quiz history** table with average and best score, **sortable** by clicking any column
 
 ### 3. Error handling

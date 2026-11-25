@@ -249,7 +249,7 @@ function showHistory() {
   });
 
   document.getElementById("history-body").innerHTML = sorted.length
-    ? sorted.map(h => "<tr><td>" + new Date(h.date).toLocaleString() + "</td><td>" + escapeHTML(h.category) +
+    ? sorted.map(h => "<tr><td>" + new Date(h.date).toLocaleString([], { dateStyle: "short", timeStyle: "short" }) + "</td><td>" + escapeHTML(h.category) +
         "</td><td>" + escapeHTML(h.difficulty) + "</td><td>" + h.score + "/" + h.total + " (" + h.percent + "%)</td></tr>").join("")
     : '<tr><td colspan="4">No quizzes yet. Your scores will show up here.</td></tr>';
 
@@ -262,10 +262,30 @@ function showHistory() {
     summary.textContent = "";
   }
 
+  showChart();
+
   document.querySelectorAll("th[data-sort]").forEach(th => {
     th.classList.toggle("sorted", th.dataset.sort === field);
     th.dataset.arrow = th.dataset.sort === field ? (ascending ? "▲" : "▼") : "";
   });
+}
+
+// Bar chart of the last 10 quizzes (oldest on the left) so progress is easy to see.
+function showChart() {
+  const chart = document.getElementById("score-chart");
+  const last = history.slice(-10);
+  if (!last.length) {
+    chart.innerHTML = "";
+    return;
+  }
+  chart.innerHTML = last.map(h => {
+    const level = h.percent >= 80 ? "high" : h.percent >= 50 ? "mid" : "low";
+    const label = h.category.split(":").pop().trim();
+    return '<div class="bar-col" title="' + escapeHTML(h.category + " - " + h.percent + "%") + '">' +
+      '<span class="bar-value">' + h.percent + "%</span>" +
+      '<div class="bar ' + level + '" style="height:' + Math.max(h.percent, 3) + '%"></div>' +
+      '<span class="bar-label">' + escapeHTML(label) + "</span></div>";
+  }).join("");
 }
 
 function setupQuiz() {

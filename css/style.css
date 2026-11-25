@@ -169,10 +169,24 @@ th.sorted::after { content: " " attr(data-arrow); }
 footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 24px 16px; }
 footer a { color: var(--blue); }
 
+/* Score chart */
+.chart { display: flex; align-items: flex-end; gap: 8px; height: 180px; margin: 8px 0 20px; padding-top: 20px; border-bottom: 2px solid var(--border); }
+.chart:empty { display: none; }
+.bar-col { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; min-width: 0; position: relative; }
+.bar { width: 100%; max-width: 48px; border-radius: 4px 4px 0 0; }
+.bar.high { background: var(--green); }
+.bar.mid { background: #ca8a04; }
+.bar.low { background: var(--red); }
+.bar-value { font-size: 0.75rem; font-weight: bold; }
+.bar-label { position: absolute; bottom: -20px; font-size: 0.7rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.table-wrap { overflow-x: auto; margin-top: 28px; }
+
 @media (max-width: 600px) {
   .answers { grid-template-columns: 1fr; }
   .grid { grid-template-columns: 1fr; }
   .search-box { flex-wrap: wrap; }
   .search-box select { width: 100%; }
   .top h1 { font-size: 1.6rem; }
+  th, td { padding: 6px 4px; font-size: 0.8rem; }
+  .tab { padding: 10px 12px; font-size: 0.9rem; }
 }
