@@ -8,7 +8,7 @@ StudyShelf searches millions of books on Open Library and shows the ones you can
 lets you check what you learned with practice quizzes on the same subject.
 
 - **Live site (through the load balancer):** https://www.enzoasaph.tech/studyshelf/
-- **Demo video:** _add your video link here_
+- **Demo video:** https://youtu.be/BIBmRCh62EY
 
 ---
 
